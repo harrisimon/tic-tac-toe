@@ -1,11 +1,19 @@
 
-body {
+body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     justify-content: center;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
+h1 {
+    text-align: center;
+}
+button{
+    margin: 40px auto ;
+    display: flex;
+}
+
 #container{
     display: flex;
     flex-direction: column;
@@ -23,7 +31,12 @@ body {
     width: 200px;
     /* background-color: rgb(219, 172, 172); */
     display: flex;
-    border: 5px solid black;  
+    border: 5px solid black;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
 }
 .line1{
     display: inline-block;
