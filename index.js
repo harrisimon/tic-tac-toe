@@ -78,7 +78,7 @@ const endGameMessage = () => {
         }
         
 }
-// endGameMessage()
+
 const playGame = () => {
         document.addEventListener('click', (e) => {
                 const clicked = e.target

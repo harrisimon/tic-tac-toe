@@ -7,7 +7,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 h2{  
-    margin: 40px 0 0 0;
+    margin: -40;
     text-align: center;
 }
 h1 {
@@ -18,7 +18,7 @@ button{
     display: flex;
 }
 .playerturn{
-
+    margin: 0;
     padding: 10px;
     justify-content: center;
     text-align: center;
@@ -34,10 +34,11 @@ button{
     width: 600px;
     height: 600px;
     grid-template-columns: auto auto auto;
+    border: solid 8px pink;
 }
 .displayMessage{
     position: relative;
-    bottom: 380px;
+    bottom: 300px;
     left: 550px;
     z-index: 1;
     margin: 0px;
@@ -55,7 +56,6 @@ button{
 .box{
     height: 200px;
     width: 200px;
-    /* background-color: rgb(219, 172, 172); */
     display: flex;
     border: 5px solid black;
     text-align: center;
@@ -64,24 +64,10 @@ button{
     align-items: center;
     font-size: 80px;
 }
-/* .line1{
-    display: inline-block;
-} */
 .box#1,.box#4,.box#7{
     border-color: blue;
     border-left: 5px;
     
 }
-/* #box1,#box4,#box7{
-    border-top: none;
-}
-#box3,#box6,#box9{
-    border-bottom: none;
-}
-#box7,#box8,#box9{
-    border-right: none;
-}
-
-
 
 
