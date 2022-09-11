@@ -58,11 +58,11 @@ const playGame = () => {
                         }
                         boardMoves.push(nextPlayer,e.target.id)
                         if(gameWin ===false){
-                        if (nextPlayer === playerX){
-                                xPlayerMoves.push(Number(e.target.id))
-                        } else if (nextPlayer === playerO){
-                                oPlayerMoves.push(Number(e.target.id))
-                        }                        
+                                if (nextPlayer === playerX){
+                                        xPlayerMoves.push(Number(e.target.id))
+                                } else if (nextPlayer === playerO){
+                                        oPlayerMoves.push(Number(e.target.id))
+                                }                        
                 } 
         }
                 const currPlayerDisplay = document.querySelector('.playerturn')
@@ -75,21 +75,20 @@ const playGame = () => {
                 }
                 turnDisplay()
                 checkForWin()
-                console.log("clicked win condition", gameWin)
-                if(gameWin===true){
-                        alert(`${nextPlayer} won!`)
-                }   
+                console.log("clicked win condition", gameWin)   
                 }   )
 }
-        
-if (gameDraw === true || gameWin === true){
 
-  console.log("stop game",gameWin)
+playGame()
         
-} else {
-        console.log("playing...", gameWin)
-        playGame()
-}
+// if (gameDraw === true || gameWin === true){
+
+//   console.log("stop game",gameWin)
+        
+// } else {
+
+//         playGame()
+// }
 
 
 
