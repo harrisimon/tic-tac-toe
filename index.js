@@ -14,7 +14,7 @@ const winningCombos = [
         [2,5,8],
         [3,6,9]
 ]
-const boardMoves = []
+let boardMoves = []
 let gameWin = false
 let gameDraw = false
 
@@ -31,23 +31,54 @@ const resetGame = () => {
         nextPlayer = playerO
         xPlayerMoves = []
         oPlayerMoves = []
-        clearBoard()   
+        boardMoves = []
+        clearBoard()
+        currPlayerDisplay.innerHTML = ''
+        document.querySelector('.displayMessage').style.visibility = 'hidden'  
 }
 const resetButton = document.querySelector('.reset')
 resetButton.addEventListener('click', resetGame)
-//---------------------------------
 
 const checkForWin = ()=>{
         let checker = (arr, target) => target.every(v =>arr.includes(v))
         for (arr in winningCombos){
                 if (checker(xPlayerMoves,winningCombos[arr]) === true||checker(oPlayerMoves,winningCombos[arr]) === true){    
-                        return gameWin = true
-                        console.log("winning tigerblood!")
-                        
+                        return gameWin = true                      
                 }
                 }  
 }
-//adding and storing moves
+const checkForDraw = () =>{
+        if(gameWin === false && boardMoves.length >= 16){
+                return gameDraw = true
+        }
+}
+
+const currPlayerDisplay = document.querySelector('.playerturn')
+const turnDisplay= () =>{
+        if (gameDraw === false && gameWin === false){
+                if (currPlayerDisplay.innerHTML === ''){
+                        currPlayerDisplay.innerHTML = 'X Plays First'
+                }
+                else if (nextPlayer === playerX){
+                        currPlayerDisplay.innerHTML = 'O Plays'
+                } else {
+                        currPlayerDisplay.innerHTML = 'X Plays'
+                }
+        }    
+}
+
+const endGameMessage = () => {
+        if(gameWin === true){
+                console.log("game win",gameWin)
+                document.querySelector('.displayMessage').style.visibility = 'visible'
+                document.querySelector('.displayMessage').innerHTML = `${nextPlayer} Wins!`
+        } else if (gameDraw === true){
+                document.querySelector('.displayMessage').style.visibility = 'visible'
+                document.querySelector('.displayMessage').innerHTML = `Draw, play again!`
+        }
+        
+}
+// endGameMessage()
 const playGame = () => {
         document.addEventListener('click', (e) => {
                 const clicked = e.target
@@ -57,7 +88,7 @@ const playGame = () => {
                                 e.target.innerHTML = nextPlayer
                         }
                         boardMoves.push(nextPlayer,e.target.id)
-                        if(gameWin ===false){
+                        if(gameWin === false && gameDraw === false){
                                 if (nextPlayer === playerX){
                                         xPlayerMoves.push(Number(e.target.id))
                                 } else if (nextPlayer === playerO){
@@ -65,30 +96,12 @@ const playGame = () => {
                                 }                        
                 } 
         }
-                const currPlayerDisplay = document.querySelector('.playerturn')
-                const turnDisplay= () =>{
-                        if (nextPlayer === playerX){
-                                currPlayerDisplay.innerHTML = 'O Plays'
-                        } else {
-                                currPlayerDisplay.innerHTML = 'X Plays'
-                        }
-                }
                 turnDisplay()
                 checkForWin()
-                console.log("clicked win condition", gameWin)   
+                checkForDraw()
+                endGameMessage()
                 }   )
 }
 
 playGame()
         
-// if (gameDraw === true || gameWin === true){
-
-//   console.log("stop game",gameWin)
-        
-// } else {
-
-//         playGame()
-// }
-
-
-

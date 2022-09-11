@@ -37,7 +37,8 @@ button{
 }
 .displayMessage{
     position: relative;
-    bottom: 400px;
+    bottom: 380px;
+    left: 550px;
     z-index: 1;
     margin: 0px;
     padding: 40px;
@@ -48,6 +49,7 @@ button{
     font-size: 80px;
     align-content: center;
     visibility: hidden;
+    display:inline-table;
 }
 
 .box{
