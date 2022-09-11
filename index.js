@@ -1,8 +1,9 @@
+//vars
 const playerX = 'X'
 const playerO = 'O'
-
-const xPlayerMoves = []
-const oPlayerMoves = []
+let nextPlayer = playerO
+let xPlayerMoves = []
+let oPlayerMoves = []
 const winningCombos = [
         [1,2,3],
         [4,5,6],
@@ -14,53 +15,81 @@ const winningCombos = [
         [3,6,9]
 ]
 const boardMoves = []
-if (xPlayerMoves.includes(winningCombos)){
-        console.log("win")
-}
+let gameWin = false
+let gameDraw = false
 
 const board = document.querySelector(".container")
-// console.log(board)
-
 const boxes = board.querySelectorAll('.box')
-// console.log(boxes)
 
-//clear the board
+//reset game
 const clearBoard = () => {
-        boxes.forEach(Element =>console.log(Element.innerHTML = '' ))
-        
+        boxes.forEach(Element =>Element.innerHTML = '' )     
 }
-
+const resetGame = () => {
+        gameDraw = false
+        gameWin = false
+        nextPlayer = playerO
+        xPlayerMoves = []
+        oPlayerMoves = []
+        clearBoard()   
+}
 const resetButton = document.querySelector('.reset')
-
-resetButton.addEventListener('click', clearBoard)
-
+resetButton.addEventListener('click', resetGame)
 //---------------------------------
 
-document.addEventListener('DOMContentLoaded', ()=>{
-
-})
-
-let nextPlayer = playerO
+const checkForWin = ()=>{
+        let checker = (arr, target) => target.every(v =>arr.includes(v))
+        for (arr in winningCombos){
+                if (checker(xPlayerMoves,winningCombos[arr]) === true||checker(oPlayerMoves,winningCombos[arr]) === true){    
+                        return gameWin = true
+                        console.log("winning tigerblood!")
+                        
+                }
+                }  
+}
 //adding and storing moves
-const boxClicked = (e) => {
-        const clicked = e.target
-        if (clicked.className === 'box' && clicked.innerHTML === ''){
-                nextPlayer = nextPlayer === playerO ? playerX : playerO;
-                console.log(nextPlayer)
-                e.target.innerHTML = nextPlayer
-                boardMoves.push(nextPlayer,e.target.id)
-                if (nextPlayer === playerX){
-                        xPlayerMoves.push(e.target.id)
-                } else {
-                        oPlayerMoves.push(e.target.id)
-                }                        
-        }  
-        const currPlayerDisplay = document.querySelector('.playerturn')
-        if (nextPlayer === playerX){
-                currPlayerDisplay.innerHTML = 'O Plays'
-        } else {
-                currPlayerDisplay.innerHTML = 'X Plays'
-}   
+const playGame = () => {
+        document.addEventListener('click', (e) => {
+                const clicked = e.target
+                if (clicked.className === 'box' && clicked.innerHTML === ''){
+                        nextPlayer = nextPlayer === playerO ? playerX : playerO;
+                        if(gameWin===false && gameDraw === false){
+                                e.target.innerHTML = nextPlayer
+                        }
+                        boardMoves.push(nextPlayer,e.target.id)
+                        if(gameWin ===false){
+                        if (nextPlayer === playerX){
+                                xPlayerMoves.push(Number(e.target.id))
+                        } else if (nextPlayer === playerO){
+                                oPlayerMoves.push(Number(e.target.id))
+                        }                        
+                } 
+        }
+                const currPlayerDisplay = document.querySelector('.playerturn')
+                const turnDisplay= () =>{
+                        if (nextPlayer === playerX){
+                                currPlayerDisplay.innerHTML = 'O Plays'
+                        } else {
+                                currPlayerDisplay.innerHTML = 'X Plays'
+                        }
+                }
+                turnDisplay()
+                checkForWin()
+                console.log("clicked win condition", gameWin)
+                if(gameWin===true){
+                        alert(`${nextPlayer} won!`)
+                }   
+                }   )
+}
+        
+if (gameDraw === true || gameWin === true){
+
+  console.log("stop game",gameWin)
+        
+} else {
+        console.log("playing...", gameWin)
+        playGame()
 }
 
-document.addEventListener('click', boxClicked)
+
+
