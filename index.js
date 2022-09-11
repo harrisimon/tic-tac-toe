@@ -74,7 +74,6 @@ turnDisplay()
 
 const endGameMessage = () => {
         if(gameWin === true){
-                console.log("game win",gameWin)
                 document.querySelector('#overlay').style.display = 'block'
                 document.querySelector('#text').innerHTML = `${nextPlayer} Wins! <br> Click to play again`
         } else if (gameDraw === true){
