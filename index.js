@@ -1,4 +1,3 @@
-//vars
 const playerX = 'X'
 const playerO = 'O'
 let nextPlayer = playerO
@@ -21,7 +20,6 @@ let gameDraw = false
 const board = document.querySelector(".container")
 const boxes = board.querySelectorAll('.box')
 
-//reset game
 const clearBoard = () => {
         boxes.forEach(Element =>Element.innerHTML = '' )     
 }
@@ -34,10 +32,16 @@ const resetGame = () => {
         boardMoves = []
         clearBoard()
         currPlayerDisplay.innerHTML = ''
-        document.querySelector('.displayMessage').style.visibility = 'hidden'  
+        messageOff()
 }
 const resetButton = document.querySelector('.reset')
 resetButton.addEventListener('click', resetGame)
+const endGameScreen = document.getElementById('overlay')
+endGameScreen.addEventListener('click', resetGame)
+
+function messageOff() {
+        document.getElementById("overlay").style.display = "none";
+      }
 
 const checkForWin = ()=>{
         let checker = (arr, target) => target.every(v =>arr.includes(v))
@@ -66,17 +70,17 @@ const turnDisplay= () =>{
                 }
         }    
 }
+turnDisplay()
 
 const endGameMessage = () => {
         if(gameWin === true){
                 console.log("game win",gameWin)
-                document.querySelector('.displayMessage').style.visibility = 'visible'
-                document.querySelector('.displayMessage').innerHTML = `${nextPlayer} Wins!`
+                document.querySelector('#overlay').style.display = 'block'
+                document.querySelector('#text').innerHTML = `${nextPlayer} Wins! <br> Click to play again`
         } else if (gameDraw === true){
-                document.querySelector('.displayMessage').style.visibility = 'visible'
-                document.querySelector('.displayMessage').innerHTML = `Draw, play again!`
-        }
-        
+                document.querySelector('#overlay').style.display = 'block'
+                document.querySelector('#text').innerHTML = `Draw, click to play again`
+        }     
 }
 
 const playGame = () => {
@@ -102,6 +106,4 @@ const playGame = () => {
                 endGameMessage()
                 }   )
 }
-
 playGame()
-        

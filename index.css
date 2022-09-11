@@ -5,13 +5,16 @@ body{
     box-sizing: border-box;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(177, 188, 198);
 }
 h2{  
-    margin: -40;
+    margin: 40px 0 0 0;
     text-align: center;
+    font-family: 'Rubik Mono One', sans-serif;
 }
 h1 {
     text-align: center;
+    font-family: 'Rubik Mono One', sans-serif;
 }
 button{
     margin: 40px auto ;
@@ -19,10 +22,12 @@ button{
 }
 .playerturn{
     margin: 0;
-    padding: 10px;
+    /* padding: 10px; */
     justify-content: center;
     text-align: center;
     font-style: bold;
+    font-family: 'Sniglet', cursive;
+    font-size: 30px;
 }
 .container{
     display: flex;
@@ -34,26 +39,37 @@ button{
     width: 600px;
     height: 600px;
     grid-template-columns: auto auto auto;
-    border: solid 8px pink;
-}
-.displayMessage{
-    position: relative;
-    bottom: 300px;
-    left: 550px;
-    z-index: 1;
-    margin: 0px;
-    padding: 40px;
-    text-align: center;
-    background-color: green;
-    border: 5px solid black;
-    border-radius: 15px;
-    font-size: 80px;
-    align-content: center;
-    visibility: hidden;
-    display:inline-table;
 }
 
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 1;
+    cursor: pointer;   
+}
+  
+#text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    z-index:2;
+    text-align: center;
+    font-family: 'Rubik Mono One', sans-serif;
+  }
+
 .box{
+    font-family: 'Sniglet', cursive;
     height: 200px;
     width: 200px;
     display: flex;
@@ -63,11 +79,8 @@ button{
     justify-content: center;
     align-items: center;
     font-size: 80px;
+    background-color: white;
 }
-.box#1,.box#4,.box#7{
-    border-color: blue;
-    border-left: 5px;
-    
-}
+
 
 
